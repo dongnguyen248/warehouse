@@ -1,0 +1,88 @@
+﻿body {
+}
+#wrap_total {
+height:100%;
+width:100%;
+overflow:no-display;
+background-color:white;
+font-family:"Times New Roman";
+}
+#wrap_head {
+height:102px;
+background-color:#1f1616;
+overflow:hidden;
+/*border-bottom:1px solid #1f1616;*/
+font-family:"Times New Roman";
+}
+#img {
+width:160px;
+margin-left:200px;
+float:left;
+height:99px;
+
+}
+#Texthead {
+width:420px;
+float:left;
+/*margin-left:100px;*/
+font-weight:bolder;
+font-size:x-large;
+font-style:italic;
+background-color:RGB(38,184,100);
+color:white;
+height:100px;
+/*font-family:Garamond;*/
+font-size:larger;
+/*border:1PX solid BLACK;*/
+}
+
+#wrap_footer {
+height:60px;
+background-color:RGB(38,184,100);
+}
+#wrap_content {
+/*height:750px;*/
+width:99%;
+min-height:500px;
+font-family:"Times New Roman";
+/*overflow-y:auto;*/
+/*background-color:white;*/
+}
+/*a:link {
+    color: white;
+}
+a:visited {
+    color: green;
+}
+
+a:hover {
+    color: hotpink;
+}
+
+a:active {
+    color: blue;
+}
+    */
+#Home:hover {
+color:red;
+}
+#wrap_total {
+overflow:no-display;
+}
+.highlight {
+    background-color: yellow;
+}
+.success {
+background-color:#93db9b;
+}
+/*.cart {
+    overflow:hidden;
+    padding:10px 3px;
+    background: yellow;
+}*/
+.dis option{
+ padding:5px 0;
+ }
+.Addimg {
+    background:url(../images/active-state.png) center no-repeat;
+}

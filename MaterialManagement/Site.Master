@@ -1,0 +1,120 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="MaterialManagement.Site" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="Content/fontawesome/font-awesome.min.css" />
+    <link rel="stylesheet" href="Content/bt/bootstrap.min.css" />
+    <link rel="stylesheet" href="Content/bt/dataTables.bootstrap.css" />
+    <link href="Content/site.css" rel="stylesheet" />
+     <link href="Content/mystyle.css" rel="stylesheet" />
+    <link href="Content/jquery.form.css" rel="stylesheet" />
+    <link href="Content/Autocomplete.css" rel="stylesheet" />
+    <link href="Content/bt/datepicker.css" rel="stylesheet" />
+   <script src="Scripts/Include/jquery-1.11.3.min.js"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="Scripts/Include/bootstrap.min.js"></script>
+    <script src="Scripts/Include/jquery.dataTables.min.js"></script>
+    <script src="Scripts/Include/dataTables.bootstrap.js"></script>
+    <script src="Scripts/Include/ie10-viewport-bug-workaround.js"></script>
+    <script src="Scripts/bootbox.min.js"></script>
+    <script src="Scripts/Include/bootstrap-datepicker.min.js"></script>
+<%--    <script src="Scripts/Include/bootstrap-datepicker.js"></script>
+    
+    <script src="Scripts/bootstrap-datetimepicker.min.js"></script>--%>
+    <!-- Jquery cross domain for IE8 -->
+    <title></title>
+    <script src="Scripts/jquery.xdomainrequest.min.js"></script>
+    <script src="Scripts/Autocomplete.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <style>
+        .datepicker {
+            z-index: 1151 !important;
+        }
+    </style>
+    <script>
+        function heartBeat() {
+            $.get("KeepAlive.ashx?", function (data) { });
+        }
+        $(function () {
+            setInterval("heartBeat()", 1000 * 60); // 30s gửi request một lần
+        });
+        $(document).ready(function () {
+        });
+    </script>
+    <%--<div id="wrap_total">--%>
+     <div id="wrap_head" class="table-responsive">
+    <div style="width:200px;float:left;">
+      <img src="images/posco.jpg" height="100" width="200"/>
+    </div>
+        <div id="Texthead"><div style="margin:0 auto;width:420px;text-align:center;"><h2 style="text-align:center;font-weight:bold">PHẦN MỀM QUẢN LÝ KHO</h2></div></div>
+
+         <div style="width:550px;float:left;margin-left:40px;color:white;">
+             <div style="float:left;margin-top:30px;height:80px">
+              <div style="width:90px;font-size:larger;font-weight:bold;margin-left:10px;font-size:large" id="Home"><a href="Home.aspx" style="color:white">Trang chủ</></a></div><div style="height:10px;width:90px;margin-left:10px" id="imgHome"></div>
+             </div>
+              <div style="float:left;margin-top:30px;height:80px">
+              <div style="width:90px;font-size:larger;font-weight:bold;text-align:center;font-size:large" id="Div3"><a href="Default.aspx" style="color:white">Tồn kho</></a></div><div style="height:10px;width:90px" id="imgLocation"></div>
+             </div>
+             
+             <div style="float:left;margin-top:30px;height:80px;">
+              <div style="width:110px;font-size:larger;font-weight:bold;text-align:center;font-size:large" id="Div2"><a href="His_import.aspx" style="color:white">LS-Nhập kho</></a></div><div style="height:10px;width:110px" id="imgImport"></div>
+             </div>
+             <div style="float:left;margin-top:30px;height:80px;margin-left:10px">
+              <div style="width:110px;font-size:larger;font-weight:bold;text-align:center;font-size:large" id="Div4"><a href="His_Export.aspx" style="color:white">LS-Xuất kho</></a></div><div style="height:10px;width:110px" id="imgExport"></div>
+             </div>
+            <%-- <div style="float:left;margin-top:30px;height:80px">
+              <div style="width:90px;font-size:larger;font-weight:bold;text-align:center" id="Div1"><a href="UploadData.aspx" style="color:white">UPLOAD</></a></div><div style="height:10px;width:80px" id="imgUpload"></div>
+             </div>--%>
+             <div style="float:left;margin-top:30px;height:90px;width:110px;font-weight:bold;font-size:larger;text-align:center;margin-left:15px;font-size:large"><a href="Login.aspx" style="color:white;">Đăng nhập</a></div><div style="height:10px;width:80px" id="imgLogin"></div>
+        </div> 
+      <%--   <div style="float:left;width:100px;margin-left:80px">
+           </div>--%>
+         <ul class="nav navbar-nav navbar-right" style="padding-top:20px">
+                    <li><a href="#">
+                        <%if(Session["USERNAME"]!=null){ %>
+                        <%=Session["USERNAME"].ToString().Trim()%></a></li>
+              <%} %>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <%if (Session["USERNAME"] != null)
+                              {%>
+                           <li class="active"><a href="ChangePassword.aspx?username=<%=Session["USERNAME"].ToString()%>">Change Password</a></li>
+                            <%  if (Convert.ToInt32(Session["ROLE"].ToString()) == 1)
+                                { %>
+                            <li><a href="EditUser.aspx">Add User/Reset Password</a></li>
+                             <li id="dvlogout"><a>LogOut</a></li>
+                            <%}}else{%>
+                               <li><a href="Login.aspx">LogIn</a></li>
+                            <%  } %>
+                        </ul>
+                        <!-- /.dropdown-user -->
+                    </li>
+                </ul>
+        </div>
+        <div id="wrap_content">
+         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"> 
+        </asp:ContentPlaceHolder>
+        </div>
+        <div id="wrap_footer" style="height:40px">
+                <div style="width:400px;margin-left:50px;font-size:larger;color:white;padding-top:10px">
+                    <span id="copyright">
+                    	Copyright &copy; 2017 Posco VST
+                    </span>
+            </div> <!-- /.col-md-6 -->
+    </div> <!-- /.site-footer -->
+      
+      
+</body>
+</html>
